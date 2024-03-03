@@ -1,6 +1,8 @@
+using PermissionManagement.API.Extensions;
 using PermissionManagement.API.Middleware;
 using PermissionManagement.Application;
 using PermissionManagement.Infrastructure;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +15,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddApplication();
 builder.Services.AddInfraestructure(builder.Configuration);
 
+builder.Services.AddSerilog(new LoggerConfiguration().ReadFrom.Configuration(builder.Configuration).CreateLogger());
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -22,7 +26,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseMiddleware<ExceptionMiddleware>();
+
+app.UseCustomException();
+
+app.UseResgistryInfoRequest();
 
 app.MapControllers();
 
