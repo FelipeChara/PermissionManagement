@@ -5,6 +5,8 @@ VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PermissionManagement.Domain", "PermissionManagement.Domain\PermissionManagement.Domain.csproj", "{79724550-14EF-4796-A9CD-DDB2AC29C273}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PermissionManagement.Application", "PermissionManagement.Aplication\PermissionManagement.Application.csproj", "{8A1EBA9B-92E1-4C9A-80C0-5403EE2C74C4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{79724550-14EF-4796-A9CD-DDB2AC29C273}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79724550-14EF-4796-A9CD-DDB2AC29C273}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{79724550-14EF-4796-A9CD-DDB2AC29C273}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A1EBA9B-92E1-4C9A-80C0-5403EE2C74C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A1EBA9B-92E1-4C9A-80C0-5403EE2C74C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A1EBA9B-92E1-4C9A-80C0-5403EE2C74C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A1EBA9B-92E1-4C9A-80C0-5403EE2C74C4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

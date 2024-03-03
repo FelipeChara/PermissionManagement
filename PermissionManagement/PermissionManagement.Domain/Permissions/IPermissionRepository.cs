@@ -2,12 +2,14 @@
 {
     public interface IPermissionRepository
     {
-        Task<Permission?> GetByEmployeeIdAsync(Guid employeeId, CancellationToken cancellationToken = default);
+        Task<Permission> GetByIdAsync(Guid Id, CancellationToken cancellationToken = default);
+
+        Task<List<Permission>> GetByEmployeeIdAsync(Guid employeeId, CancellationToken cancellationToken = default);
 
         Task<bool> IsOverlappingAsync(Guid employeeId, Guid permissionTypeId, DateOnly startDate, DateOnly endDate, CancellationToken cancellationToken = default);
 
-        Task SaveAsync(Permission entity);
+        void RequestAsync(Permission entity);
 
-        Task UpdateAsync(int id, Permission entity);
+        void ModifyAsync(Permission entity);
     }
 }
