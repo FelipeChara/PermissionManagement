@@ -47,7 +47,7 @@ namespace PermissionManagement.Application.Permissions.Request
                 DateTime.Now
             );
 
-            _permissionRepository.RequestAsync(permission);
+            await _permissionRepository.RequestAsync(permission);
 
             await _unitOfWork.SaveChangesAsync(cancellationToken);
 

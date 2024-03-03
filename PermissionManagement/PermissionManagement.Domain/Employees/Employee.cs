@@ -2,13 +2,13 @@
 
 namespace PermissionManagement.Domain.Employees
 {
-    public class Employee(string? nombre, string? apellido, Email? email)
+    public class Employee(string? name, string? lasName, Email? email)
     {
         public Guid Id { get; init; } = Guid.NewGuid();
 
-        public string? Nombre { get; private set; } = nombre;
+        public string? Name { get; private set; } = name;
 
-        public string? Apellido { get; private set; } = apellido;
+        public string? LastName { get; private set; } = lasName;
 
         public Email? Email { get; private set; } = email;
     }
