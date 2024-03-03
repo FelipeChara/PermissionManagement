@@ -9,9 +9,9 @@ namespace PermissionManagement.Infrastructure.Repositories
     {
         private readonly ApplicationDbContext _context = context;
 
-        public Task<List<Permission>> GetByEmployeeIdAsync(Guid employeeId, CancellationToken cancellationToken = default)
+        public async Task<List<Permission>> GetByEmployeeIdAsync(Guid employeeId, CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            return await _context.Set<Permission>().Where(x => x.EmployeeId == employeeId).ToListAsync(cancellationToken);
         }
 
         public async Task<Permission?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
@@ -20,9 +20,31 @@ namespace PermissionManagement.Infrastructure.Repositories
                 .FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
         }
 
-        public Task<bool> IsOverlappingAsync(Guid employeeId, Guid permissionTypeId, DateOnly startDate, DateOnly endDate, CancellationToken cancellationToken = default)
+        public async Task<bool> IsOverlappingAsync(Guid employeeId, Guid permissionTypeId, DateOnly startDate, DateOnly endDate, CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            return await _context.Set<Permission>()
+                .AnyAsync(
+                    x =>
+                        x.PermissionTypeId == permissionTypeId &&
+                        x.EmployeeId == employeeId &&
+                        x.StartDate <= endDate &&
+                        x.EndDate >= startDate,
+                     cancellationToken
+                    );
+        }
+
+        public async Task<bool> IsOverlappingModifyAsync(Guid id, Guid employeeId, Guid permissionTypeId, DateOnly startDate, DateOnly endDate, CancellationToken cancellationToken = default)
+        {
+            return await _context.Set<Permission>()
+                .AnyAsync(
+                    x =>
+                        x.PermissionTypeId == permissionTypeId &&
+                        x.EmployeeId == employeeId &&
+                        x.StartDate <= endDate &&
+                        x.EndDate >= startDate &&
+                        x.Id != id,
+                     cancellationToken
+                    );
         }
 
         public void Modify(Permission entity)

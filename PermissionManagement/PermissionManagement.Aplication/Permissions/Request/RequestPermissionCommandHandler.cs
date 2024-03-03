@@ -30,8 +30,12 @@ namespace PermissionManagement.Application.Permissions.Request
             PermissionType? permissionType = await _permissionTypeRepository.GetByIdAsync(request.PermissionTypeId, cancellationToken);
 
             if (permissionType == null)
-            {
+            { 
                 return Result.Failure<Guid>(PermissionTypeErrors.NotFound);
+            }
+            if (!permissionType.Status)
+            {
+                return Result.Failure<Guid>(PermissionTypeErrors.Inactive);
             }
 
             if (await _permissionRepository.IsOverlappingAsync(request.EmployeeId, request.PermissionTypeId, request.StartDate, request.EndDate, cancellationToken))
@@ -47,7 +51,7 @@ namespace PermissionManagement.Application.Permissions.Request
                 DateTime.Now
             );
 
-            await _permissionRepository.RequestAsync(permission);
+            await _permissionRepository.RequestAsync(permission, cancellationToken);
 
             await _unitOfWork.SaveChangesAsync(cancellationToken);
 

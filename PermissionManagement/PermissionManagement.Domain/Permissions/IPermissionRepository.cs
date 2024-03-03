@@ -8,6 +8,8 @@
 
         Task<bool> IsOverlappingAsync(Guid employeeId, Guid permissionTypeId, DateOnly startDate, DateOnly endDate, CancellationToken cancellationToken = default);
 
+        Task<bool> IsOverlappingModifyAsync(Guid id, Guid employeeId, Guid permissionTypeId, DateOnly startDate, DateOnly endDate, CancellationToken cancellationToken = default);
+
         Task RequestAsync(Permission entity, CancellationToken cancellationToken = default);
 
         void Modify(Permission entity);

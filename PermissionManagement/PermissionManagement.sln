@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PermissionManagement.Applic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PermissionManagement.Infrastructure", "PermissionManagement.Infrastructure\PermissionManagement.Infrastructure.csproj", "{D4F788D8-6901-416F-AEC9-7C1B7034192B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PermissionManagement.API", "PermissionManagement.API\PermissionManagement.API.csproj", "{E83D422C-9705-4DC8-96CB-EC01B04AEA44}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{D4F788D8-6901-416F-AEC9-7C1B7034192B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D4F788D8-6901-416F-AEC9-7C1B7034192B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D4F788D8-6901-416F-AEC9-7C1B7034192B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E83D422C-9705-4DC8-96CB-EC01B04AEA44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E83D422C-9705-4DC8-96CB-EC01B04AEA44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E83D422C-9705-4DC8-96CB-EC01B04AEA44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E83D422C-9705-4DC8-96CB-EC01B04AEA44}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

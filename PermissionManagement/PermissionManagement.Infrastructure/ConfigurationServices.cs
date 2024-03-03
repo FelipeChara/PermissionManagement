@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PermissionManagement.Domain.Abstractions;
 using PermissionManagement.Domain.Employees;
 using PermissionManagement.Domain.PermisionTypes;
 using PermissionManagement.Domain.Permissions;
@@ -21,6 +22,8 @@ namespace PermissionManagement.Infrastructure
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             services.AddScoped<IPermissionRepository, PermissionRepository>();
             services.AddScoped<IPermissionTypeRepository, PermissionTypeRepository>();
+
+            services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<ApplicationDbContext>());
 
             return services;
         }

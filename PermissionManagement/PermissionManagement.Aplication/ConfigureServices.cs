@@ -14,6 +14,7 @@ namespace PermissionManagement.Application
                 configuration.AddOpenBehavior(typeof(ValidationBehaviour<,>));
             });
 
+            services.AddAutoMapper(typeof(ConfigureServices).Assembly);
             services.AddValidatorsFromAssembly(typeof(ConfigureServices).Assembly);
 
             return services;

@@ -41,7 +41,7 @@ namespace PermissionManagement.Application.Permissions.Modify
                 return Result.Failure<Guid>(PermissionTypeErrors.NotFound);
             }
 
-            if (await _permissionRepository.IsOverlappingAsync(request.EmployeeId, request.PermissionTypeId, request.StartDate, request.EndDate, cancellationToken))
+            if (await _permissionRepository.IsOverlappingModifyAsync(request.Id, request.EmployeeId, request.PermissionTypeId, request.StartDate, request.EndDate, cancellationToken))
             {
                 return Result.Failure<Guid>(PermissionErrors.Overlap);
             }
