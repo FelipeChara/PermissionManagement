@@ -32,7 +32,6 @@ namespace PermissionManagement.API.Middleware
                 context.Response.StatusCode = exceptionDetails.Status;
 
                 await context.Response.WriteAsJsonAsync(problemDetails);
-
             }
         }
 

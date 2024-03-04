@@ -15,4 +15,8 @@
     <ProjectReference Include="..\PermissionManagement.Domain\PermissionManagement.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <InternalsVisibleTo Include="PermissionManagement.Application.UnitTests" />
+  </ItemGroup>
+
 </Project>

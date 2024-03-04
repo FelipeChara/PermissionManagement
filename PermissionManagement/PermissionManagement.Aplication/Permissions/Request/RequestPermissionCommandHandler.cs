@@ -1,4 +1,5 @@
 ﻿using PermissionManagement.Application.Abstractions.CQRS;
+using PermissionManagement.Application.Abstractions.Services;
 using PermissionManagement.Domain.Abstractions;
 using PermissionManagement.Domain.Employees;
 using PermissionManagement.Domain.PermisionTypes;
@@ -10,13 +11,15 @@ namespace PermissionManagement.Application.Permissions.Request
         IPermissionRepository permissionRepository,
         IPermissionTypeRepository permissionTypeRepository,
         IEmployeeRepository employeeRepository,
-        IUnitOfWork unitOfWork)
+        IUnitOfWork unitOfWork,
+        ISearchService searchService)
         : ICommandHandler<RequestPermissionCommand, Guid>
     {
         private readonly IPermissionRepository _permissionRepository = permissionRepository;
         private readonly IPermissionTypeRepository _permissionTypeRepository = permissionTypeRepository;
         private readonly IEmployeeRepository _employeeRepository = employeeRepository;
         private readonly IUnitOfWork _unitOfWork = unitOfWork;
+        private readonly ISearchService _searchService = searchService;
 
         public async Task<Result<Guid>> Handle(RequestPermissionCommand request, CancellationToken cancellationToken)
         {
@@ -54,6 +57,8 @@ namespace PermissionManagement.Application.Permissions.Request
             await _permissionRepository.RequestAsync(permission, cancellationToken);
 
             await _unitOfWork.SaveChangesAsync(cancellationToken);
+
+            await _searchService.SendPermission(permission);
 
             return permission.Id;
         }

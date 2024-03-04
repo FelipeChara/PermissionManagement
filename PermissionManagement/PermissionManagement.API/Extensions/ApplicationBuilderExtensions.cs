@@ -9,7 +9,7 @@ namespace PermissionManagement.API.Extensions
             app.UseMiddleware<ExceptionMiddleware>();
         }
 
-        public static void UseResgistryInfoRequest(this IApplicationBuilder app)
+        public static void UseRegistryInfoRequest(this IApplicationBuilder app)
         {
             app.UseMiddleware<RegistryContextMiddleware>();
         }

@@ -9,12 +9,8 @@ namespace PermissionManagement.API.Middleware
 
         public async Task InvokeAsync(HttpContext context)
         {
-            string message = $"Request Information: Method: {context.Request.Method} Api: {context.Request.Path}";
-
-            if (context.Request.Method != "GET")
-            {
-                message += $" Body: {JsonConvert.SerializeObject(context.Request.Body)}";
-            }
+            //Informacion Request
+            string message = $"Request Information: Method: {context.Request.Method} Api: {context.Request.Path}";            
  
             _logger.LogInformation(message);
 

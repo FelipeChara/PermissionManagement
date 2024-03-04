@@ -13,6 +13,11 @@ namespace PermissionManagement.API.Controllers
     {
         private readonly IMediator _mediator = mediator;
 
+        /// <summary>
+        /// Obtiene permiso por Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(Guid id)
         {
@@ -26,6 +31,11 @@ namespace PermissionManagement.API.Controllers
             return Ok(query.Value);
         }
 
+        /// <summary>
+        /// Obtiene lista de permisos por empleado
+        /// </summary>
+        /// <param name="employeeId"></param>
+        /// <returns></returns>
         [HttpGet("employee/{employeeId}")]
         public async Task<IActionResult> GetByEmployee(Guid employeeId)
         {
@@ -39,6 +49,12 @@ namespace PermissionManagement.API.Controllers
             return Ok(query.Value);
         }
 
+        /// <summary>
+        /// Solicita un permiso 
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> RequestPermission(RequestPermissionCommand request, CancellationToken cancellationToken)
         {
@@ -52,6 +68,13 @@ namespace PermissionManagement.API.Controllers
             return CreatedAtAction(nameof(GetById), new { id = command.Value }, command.Value);
         }
 
+        /// <summary>
+        /// Edita un permiso
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="request"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> ModifyPermission(Guid id, ModifyPermissionCommand request, CancellationToken cancellationToken)
         {
