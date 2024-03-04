@@ -17,6 +17,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PermissionManagement.Domain
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PermissionManagement.Application.UnitTests", "PermissionManagement.Application.UnitTests\PermissionManagement.Application.UnitTests.csproj", "{3F572AA3-E67E-42DA-956C-CC707810AEDD}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IntegrationTests", "IntegrationTests", "{552D8269-0209-4CF6-B546-F1A05782D158}"
+	ProjectSection(SolutionItems) = preProject
+		PermissionManagement.API.IntegrationTests.postman_collection.json = PermissionManagement.API.IntegrationTests.postman_collection.json
+		VariablesGlobals.postman_environment.json = VariablesGlobals.postman_environment.json
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -54,6 +60,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{9C526C5F-4D79-41E9-9A5B-E6813B6C2E80} = {C9ACF90D-9489-4681-BB94-26FCF4CB4F2E}
 		{3F572AA3-E67E-42DA-956C-CC707810AEDD} = {C9ACF90D-9489-4681-BB94-26FCF4CB4F2E}
+		{552D8269-0209-4CF6-B546-F1A05782D158} = {C9ACF90D-9489-4681-BB94-26FCF4CB4F2E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1B6A94D3-6D2C-4403-83BC-A6DFFB82E277}

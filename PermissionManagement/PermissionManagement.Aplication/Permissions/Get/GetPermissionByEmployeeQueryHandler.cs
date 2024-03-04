@@ -24,7 +24,7 @@ namespace PermissionManagement.Application.Permissions.Get
 
             List<Permission> permissions = await _permissionRepository.GetByEmployeeIdAsync(request.EmployeeId, cancellationToken);
 
-            List<PermissionDTO> permissionDTOs = _mapper.Map<List<PermissionDTO>>(permissions);
+            List<PermissionDTO> permissionDTOs = permissions == null ? [] : _mapper.Map<List<PermissionDTO>>(permissions);
 
             return permissionDTOs;
         }

@@ -1,0 +1,441 @@
+{
+	"info": {
+		"_postman_id": "34439e1c-c695-49fc-8003-ee53f5034739",
+		"name": "PermissionManagement.API.IntegrationTests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13454707"
+	},
+	"item": [
+		{
+			"name": "Permission",
+			"item": [
+				{
+					"name": "RequestPermission_Failure_Validation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Validation Failure\", function () {\r",
+									"    pm.response.to.have.status(400);    \r",
+									"});\r",
+									"\r",
+									"var data = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Type Validation Failure\", () => {\r",
+									"    pm.expect(data.type).to.eql(\"ValidationFailure\");\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"employeeId\": \"FFB81CAF-55C4-4CAF-82F7-467D33655517\",\r\n    \"permissionTypeId\": \"7CF78F7F-2846-4486-9ECD-E43FC296AAAF\",\r\n    \"startDate\": \"2024-01-11\",\r\n    \"endDate\": \"2024-01-10\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}/api/Permission",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"api",
+								"Permission"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RequestPermission_Failure_EmployeeIsNotFound",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"No Information Found\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"    \r",
+									"});\r",
+									"\r",
+									"var data = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Validation code\", () => {\r",
+									"    pm.expect(data.code).to.eql(\"Employee.Found\");\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"employeeId\": \"00000000-0000-0000-0000-000000000001\",\r\n    \"permissionTypeId\": \"{{PermissionTypeId}}\",\r\n    \"startDate\": \"2024-01-09\",\r\n    \"endDate\": \"2024-01-10\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}/api/Permission",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"api",
+								"Permission"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RequestPermission_Success",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success Request Permission\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.collectionVariables.set(\"PermissionId\", pm.response.json());\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"employeeId\": \"{{EmployeeId}}\",\r\n    \"permissionTypeId\": \"{{PermissionTypeId}}\",\r\n    \"startDate\": \"2024-01-09\",\r\n    \"endDate\": \"2024-01-10\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}/api/Permission",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"api",
+								"Permission"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetPermissionByIdFailure",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"No Information Found\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"    \r",
+									"});\r",
+									"\r",
+									"var data = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Validation code\", () => {\r",
+									"    pm.expect(data.code).to.eql(\"Permission.Found\");\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl}}/api/Permission/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"api",
+								"Permission",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetPermissionByIdSuccess",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success Found\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    \r",
+									"});\r",
+									"\r",
+									"var data = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Success response\", () => {\r",
+									"    pm.expect(data.id).to.eql(pm.collectionVariables.get(\"PermissionId\"));\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.get(\"PermissionId\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl}}/api/Permission/{{PermissionId}}",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"api",
+								"Permission",
+								"{{PermissionId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetPermissionByEmployeeFailure",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"No Information Found\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"    \r",
+									"});\r",
+									"\r",
+									"var data = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Validation code\", () => {\r",
+									"    pm.expect(data.code).to.eql(\"Employee.Found\");\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl}}/api/Permission/employee/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"api",
+								"Permission",
+								"employee",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetPermissionByEmployeeSuccess",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success Found\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    \r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl}}/api/Permission/employee/{{EmployeeId}}",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"api",
+								"Permission",
+								"employee",
+								"{{EmployeeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ModifyPermission_Success",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.get(\"PermissionId\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success Modify Permission\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"{{PermissionId}}\",\r\n    \"employeeId\": \"{{EmployeeId}}\",\r\n    \"permissionTypeId\": \"{{PermissionTypeId}}\",\r\n    \"startDate\": \"2024-01-09\",\r\n    \"endDate\": \"2024-01-23\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}/api/Permission/{{PermissionId}}",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"api",
+								"Permission",
+								"{{PermissionId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ModifyPermission_Failure",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Success Request Permission\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"00000000-0000-0000-0000-000000000001\",\r\n    \"employeeId\": \"{{EmployeeId}}\",\r\n    \"permissionTypeId\": \"{{PermissionTypeId}}\",\r\n    \"startDate\": \"2024-01-09\",\r\n    \"endDate\": \"2024-01-23\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}/api/Permission/{{PermissionId}}",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"api",
+								"Permission",
+								"{{PermissionId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "EmployeeId",
+			"value": "82F7"
+		},
+		{
+			"key": "EmployeeId",
+			"value": ""
+		},
+		{
+			"key": "PermissionId",
+			"value": ""
+		}
+	]
+}
